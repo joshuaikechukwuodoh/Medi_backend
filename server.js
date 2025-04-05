@@ -23,6 +23,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Health check endpoint
+app.get('/', (req, res) => {
+    res.json({ status: 'Server is running' });
+});
+
 // Middleware to make io accessible in routes
 app.use((req, res, next) => {
     req.io = io;
@@ -61,7 +66,7 @@ ioServer.on('connection', (socket) => {
     });
 });
 
-server.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}`);
+server.listen(process.env.PORT || 3000, () => {
+    console.log(`Server is running on port ${process.env.PORT || 3000}`);
 });
 
