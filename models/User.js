@@ -10,7 +10,9 @@ const userSchema = new mongoose.Schema({
     age: Number,
     image: String,
     createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now }
+    updatedAt: { type: Date, default: Date.now },
+    role: { type: String, enum: ["doctor", "patient"], required: true },
+    verified: { type: Boolean, default: false }
 
 });
 
